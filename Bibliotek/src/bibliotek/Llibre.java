@@ -18,11 +18,11 @@ public class Llibre {
           this.isbn = isbn;
           this.author = autor;
       }
-
       public void imprimir(){
           System.out.println(this.title);
           System.out.println(this.isbn);
           System.out.println(this.author);
           
       }
+      
 }
