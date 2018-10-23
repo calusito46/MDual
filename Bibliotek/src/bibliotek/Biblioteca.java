@@ -17,20 +17,56 @@ public class Biblioteca {
     public Biblioteca(int maxLlibres) {
         this.llibres = new Llibre[maxLlibres];
     }
-    
-    public int getNMaxLlibres(){
-        return llibres.length;        
+
+    public int getNMaxLlibres() {
+        return llibres.length;
     }
+
     public int getNActualLlibres() {
-        int cont = 0;
+        return nLlibres;
+    }
+
+    public void afegirLlibre(String titol, String isbn, String autor) {
+        if (nLlibres >= llibres.length) {
+            throw new java.lang.RuntimeException("Nombree de llibres maxim assolit");
+        } else {
+            llibres[nLlibres] = new Llibre(titol, isbn, autor);
+            nLlibres++;
+        }
+    }
+
+    public void imprimirLlibres() {
+        for (int i = 0; i < llibres.length && llibres[i] != null; i++) {
+            llibres[i].imprimir();
+        }
+    }
+
+    public Llibre obtenirLlibre(String isbn) {
         for (Llibre llibre : llibres) {
-            if (llibre != null) {
-                cont++;
+            if (llibre.getIsbn().equals(isbn)) {
+                return llibre;
             }
         }
-        return cont;
+        return null;
     }
-    public void afegirLlibre() {
-        
+
+    public boolean cedirLlibre(String isbn) {
+        for (Llibre llibre : llibres) {
+            if (llibre.getIsbn().equals(isbn) && !llibre.getCedit()) {
+                llibre.setCedit();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void retornarLlibre(String isbn) {
+        for (Llibre llibre : llibres) {
+            if (llibre.getIsbn().equals(isbn) && !llibre.getCedit()) {
+                llibre.unsetCedit();
+            } else {
+                throw new java.lang.RuntimeException("El llibre no estava cedit");
+            }
+        }
     }
 }

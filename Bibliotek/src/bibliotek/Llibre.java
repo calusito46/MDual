@@ -10,6 +10,7 @@ package bibliotek;
  * @author Calusito
  */
 public class Llibre {
+
     private String title;
     private String isbn;
     private String author;
@@ -21,13 +22,32 @@ public class Llibre {
         this.author = autor;
         this.cedit = false;
     }
-      public void imprimir(){
-          System.out.println(this.title);
-          System.out.println(this.isbn);
-          System.out.println(this.author);
-          
-      }
-      public boolean mateixAutor(Llibre llibre){
+
+    public void imprimir() {
+        System.out.println(this.title);
+        System.out.println(this.isbn);
+        System.out.println(this.author);
+
+    }
+
+    public boolean mateixAutor(Llibre llibre) {
         return this.author.equals(llibre.author);
-      }
+    }
+
+    public String getIsbn() {
+        return this.isbn;
+    }
+
+    public void setCedit() {
+        this.cedit = true;
+
+    }
+
+    public void unsetCedit() {
+        this.cedit = false;
+    }
+
+    public boolean getCedit() {
+        return this.cedit;
+    }
 }
