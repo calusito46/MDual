@@ -50,4 +50,8 @@ public class Llibre {
     public boolean getCedit() {
         return this.cedit;
     }
+
+    public String getAutor() {
+        return this.author;
+    }
 }

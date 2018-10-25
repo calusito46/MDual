@@ -27,8 +27,8 @@ public class Biblioteca {
     }
 
     public void afegirLlibre(String titol, String isbn, String autor) {
-        if (nLlibres >= llibres.length) {
-            throw new java.lang.RuntimeException("Nombree de llibres maxim assolit");
+        if (nLlibres >= llibres.length || obtenirLlibre(isbn) != null) {
+            throw new java.lang.RuntimeException("Nombre de llibres maxim assolit o el llibre ja existeix");
         } else {
             llibres[nLlibres] = new Llibre(titol, isbn, autor);
             nLlibres++;
@@ -36,7 +36,7 @@ public class Biblioteca {
     }
 
     public void imprimirLlibres() {
-        for (int i = 0; i < llibres.length && llibres[i] != null; i++) {
+        for (int i = 0; llibres[i] != null && i < llibres.length; i++) {
             llibres[i].imprimir();
         }
     }
@@ -51,12 +51,12 @@ public class Biblioteca {
     }
 
     public boolean cedirLlibre(String isbn) {
-        for (Llibre llibre : llibres) {
-            if (llibre.getIsbn().equals(isbn) && !llibre.getCedit()) {
+        Llibre llibre = obtenirLlibre(isbn);
+            if (!llibre.getCedit()) {
                 llibre.setCedit();
                 return true;
             }
-        }
+        
         return false;
     }
 
