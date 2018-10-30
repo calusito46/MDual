@@ -24,9 +24,9 @@ public class Llibre {
     }
 
     public void imprimir() {
-        System.out.println(this.title);
-        System.out.println(this.isbn);
-        System.out.println(this.author);
+        System.out.println("Titol: " + this.title);
+        System.out.println("ISBN: " + this.isbn);
+        System.out.println("Autor: " + this.author);
 
     }
 

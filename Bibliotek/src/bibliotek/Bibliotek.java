@@ -20,8 +20,8 @@ public class Bibliotek {
         // TODO code application logic here
         Scanner lector = new Scanner(System.in);
         Biblioteca biblio = new Biblioteca(20);
-        int menu;
         String titol, isbn, autor, isbn2;
+        boolean acabat = false;
         do {
             System.out.println("1 -- Imprimir tots els llibres, nombre actual de llibres i nombre màxim");
             System.out.println("2 -- Indica un ISBN i s'imprimira la informacio del Llibre");
@@ -31,8 +31,7 @@ public class Bibliotek {
             System.out.println("6 -- Marcar un llibre com a cedit per ISBN");
             System.out.println("7 -- Marcar un llibre com a no cedit per ISBN");
             System.out.println("8 -- Surt");
-            menu = Integer.parseInt(lector.nextLine());
-            switch (menu) {
+            switch (Integer.parseInt(lector.nextLine())) {
                 case 1:
                     biblio.imprimirLlibres();
                     System.out.println(biblio.getNActualLlibres());
@@ -55,8 +54,8 @@ public class Bibliotek {
                     autor = lector.nextLine();
                     try {
                         biblio.afegirLlibre(titol, isbn, autor);
-                    } catch (Exception e) {
-                        System.out.println(e.getLocalizedMessage());
+                    } catch (RuntimeException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
 
@@ -108,13 +107,13 @@ public class Bibliotek {
                     }
                     break;
 
-                case 8: ;
+                case 8: acabat = true;
                     break;
 
                 default:
                     System.out.println("Valor Incorrecte");
                     break;
             }
-        } while (menu != 8);
+        } while (!acabat);
     }
 }
